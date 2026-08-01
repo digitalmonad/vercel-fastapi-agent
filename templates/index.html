@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Agent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            display: none;
+            white-space: pre-wrap;
+        }
+        
+        .error {
+            border-color: red;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Note Agent</h1>
+    
+    <form id="agentForm">
+        <textarea id="prompt" placeholder="Enter your prompt..." required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    
+    <div id="response"></div>
+    
+    <script>
+        const form = document.getElementById('agentForm');
+        const promptInput = document.getElementById('prompt');
+        const responseDiv = document.getElementById('response');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            responseDiv.style.display = 'block';
+            responseDiv.className = '';
+            responseDiv.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch('/agent', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: promptInput.value })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    responseDiv.textContent = data.response;
+                } else {
+                    responseDiv.className = 'error';
+                    responseDiv.textContent = 'Error: ' + (data.detail || 'Unknown error');
+                }
+            } catch (error) {
+                responseDiv.className = 'error';
+                responseDiv.textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

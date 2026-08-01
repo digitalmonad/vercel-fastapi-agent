@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain_cloudflare import ChatCloudflareWorkersAI
 from langgraph.prebuilt import create_react_agent
+from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
@@ -93,6 +94,7 @@ def run_agent(user_input: str) -> str:
                 "recursion_limit": 5
             },  # agent can do only limited number of iterations
         )
-        return result["messages"][-1].content
+
+        return result["messages"][-1].text()
     except Exception as e:
         return f"Error: {str(e)}"
