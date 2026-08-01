@@ -10,12 +10,20 @@ from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
+
+def env(name: str) -> str:
+    value = os.getenv(name)
+    if not value:
+        raise RuntimeError(f"Missing {name}")
+    return value
+
+
 BASE_DIR = Path(__file__).resolve().parent
 KNOWLEDGE_BASE_PATH = BASE_DIR / "knowledge-base.json"
 
-ACCOUNT_ID = os.getenv("CLOUDFLARE_ACCOUNT_ID")
-API_KEY = os.getenv("CLOUDFLARE_API_KEY")
-MODEL = os.getenv("CLOUDFLARE_MODEL")
+ACCOUNT_ID = env("CLOUDFLARE_ACCOUNT_ID")
+API_KEY = env("CLOUDFLARE_API_KEY")
+MODEL = env("CLOUDFLARE_MODEL")
 
 llm = ChatCloudflareWorkersAI(
     model=MODEL,

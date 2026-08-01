@@ -3,7 +3,7 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from agent import run_agent
 
-import uvicorn
+# import uvicorn
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -50,4 +50,5 @@ async def invoke_agent(request: AgentRequest):
         raise HTTPException(status_code=500, detail=f"Error invoking agent: {str(e)}")
 
 
-uvicorn.run(app, host="0.0.0.0", port=8000)
+# uvicorn.run(app, host="0.0.0.0", port=8000)
+# for development only
