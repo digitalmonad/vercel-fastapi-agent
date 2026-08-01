@@ -1,0 +1,39 @@
+{
+  "company": {
+    "name": "Northstar Labs",
+    "industry": "B2B SaaS for logistics and operations",
+    "mission": "Help growing teams automate planning, reporting, and customer support.",
+    "location": "Prague, Czech Republic"
+  },
+  "products": [
+    {
+      "name": "Northstar Dispatch",
+      "description": "A platform for coordinating field teams and scheduling jobs.",
+      "best_for": "Service businesses with mobile crews"
+    },
+    {
+      "name": "Northstar Insights",
+      "description": "A reporting dashboard for KPIs, customer trends, and forecast planning.",
+      "best_for": "Operations managers who need fast reporting"
+    }
+  ],
+  "support": {
+    "email": "support@northstarlabs.example",
+    "hours": "Monday to Friday, 8:00-18:00 CET",
+    "response_time": "Most requests are answered within one business day"
+  },
+  "pricing": {
+    "model": "Flexible annual or monthly plans",
+    "free_trial": "A 14-day free trial is available for new customers"
+  },
+  "faq": [
+    {
+      "question": "Do you offer onboarding?",
+      "answer": "Yes. Every paid plan includes onboarding support and a guided setup session."
+    },
+    {
+      "question": "Can I integrate Northstar with my existing CRM?",
+      "answer": "Yes. We support common integrations via API and webhooks."
+    }
+  ]
+}
